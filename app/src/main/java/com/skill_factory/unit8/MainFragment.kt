@@ -1,19 +1,15 @@
-package com.skill_factory.unit8
-
 import android.os.Bundle
 import android.transition.AutoTransition
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.*
-
+import androidx.fragment.app.Fragment
+import com.skill_factory.unit8.R
+import com.skill_factory.unit8.SecondFragment
 import kotlinx.android.synthetic.main.main_fragment.*
 
 const val transitionName = "image_name"
 const val transitionNameText = "transition_text"
-
-const val KEY_IMAGE_INDEX = "image_index"
-const val KEY_TEXT = "text_index"
 
 class MainFragment() : Fragment() {
 
@@ -27,10 +23,8 @@ class MainFragment() : Fragment() {
 
     val secondFragment = SecondFragment()
 
-
     init {
         secondFragment.sharedElementEnterTransition = AutoTransition().setDuration(800L)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,8 +35,6 @@ class MainFragment() : Fragment() {
         //При обратном переходе ставим transitionName обратно
         images[secondFragment.imageIndex].transitionName = transitionName
         texts[secondFragment.imageIndex].transitionName = transitionNameText
-
-
 
         images.forEachIndexed { i, img ->
             img.setOnClickListener {
@@ -57,7 +49,7 @@ class MainFragment() : Fragment() {
                     .addSharedElement(img, transitionName)
                     .addSharedElement(texts[i], transitionNameText)
                     .replace((view.parent as ViewGroup).id, secondFragment.apply {
-                        imageIndex = i;
+                        imageIndex = i
                         text = texts[i].text.toString()
                     })
                     .addToBackStack("MainFragment")

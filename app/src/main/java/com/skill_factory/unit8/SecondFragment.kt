@@ -10,9 +10,8 @@ import kotlinx.android.synthetic.main.fragment_second.*
 
 class SecondFragment : Fragment() {
 
-    var imageIndex = 0;
+    var imageIndex = 0
     var text: String = ""
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
